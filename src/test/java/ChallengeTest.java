@@ -53,9 +53,9 @@ public class ChallengeTest {
     @Order(4)
     public void digitSum() {
         assertEquals(27, challenges.digitSum(10));
-        assertEquals(189, challenges.digitSum(189));
-        assertEquals(423, challenges.digitSum(423));
-        assertEquals(549, challenges.digitSum(549));
+        assertEquals(189, challenges.digitSum(42));
+        assertEquals(423, challenges.digitSum(71));
+        assertEquals(549, challenges.digitSum(89));
     }
 
     @Test
