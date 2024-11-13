@@ -61,8 +61,8 @@ public class ChallengeTest {
     @Test
     @Order(5)
     public void decryption() {
-        assertEquals(challenges.decrypt(Arrays.asList(72, 33, -73, 84, -12, -3, 13, -13, -68)),"Hi there!");
-        assertEquals(challenges.decrypt(Arrays.asList(83, 34, -7, 5, -11, 1, 5, -9)),"Sunshine");
+        assertEquals("Hi there!",challenges.decrypt(Arrays.asList(72, 33, -73, 84, -12, -3, 13, -13, -68)));
+        assertEquals("Sunshine",challenges.decrypt(Arrays.asList(83, 34, -7, 5, -11, 1, 5, -9)));
     }
     @Test
     @Order(6)

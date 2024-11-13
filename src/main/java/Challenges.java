@@ -101,7 +101,7 @@ public class Challenges {
             cont = cont.add(aux);
         }
 
-        int l = (int) (Math.log10(cont.doubleValue()) + 1);
+        int l = (int) (Math.log10(cont.doubleValue()) + 1); //Obtaining length of the number
         return cont.toString().substring(l - lastDigits);
     }
     ;
@@ -124,8 +124,25 @@ public class Challenges {
     ***** */
 
     public Integer digitSum(int n) {
-        // YOUR CODE HERE...
-        return 1;
+        BigInteger[] facts = new BigInteger[n+1];
+        facts[0] = BigInteger.valueOf(1);
+
+        //Calculating facts
+        for(int i = 1; i < n+1; ++i){
+            facts[i] = facts[i - 1].multiply(BigInteger.valueOf(i));
+        }
+
+        var res = facts[n];
+        int l = (int) (Math.log10(res.doubleValue()) + 1);
+        int sum = 0;
+
+        //Summing digits
+        for(int i = 0; i < l; ++i){
+            sum += res.mod(BigInteger.valueOf(10)).intValue();
+            res = res.divide(BigInteger.valueOf(10));
+        }
+
+        return sum;
     }
 
     /**
@@ -138,8 +155,15 @@ public class Challenges {
      * @param ascivalues  hand, player2 hand
      */
     public String decrypt(List<Integer> ascivalues) {
-        // YOUR CODE HERE...
-        return "";
+        StringBuilder message = new StringBuilder();
+        message.append((char) ascivalues.getFirst().intValue());
+        char c = message.charAt(0);
+
+        for(int i = 0; i < ascivalues.size() - 1; ++i){
+            message.append((char)(c + ascivalues.get(i + 1)));
+            c = (char) message.charAt(message.length() - 1);
+        }
+        return message.toString();
     }
 
     /**
@@ -152,7 +176,13 @@ public class Challenges {
      * @param text  hand, player2 hand
      */
     public List<Integer> encrypt(String text) {
-        // YOUR CODE HERE...
-        return Collections.emptyList();
+        List<Integer> res = new ArrayList<>();
+
+        res.add((int) text.charAt(0));
+        for(int i = 0; i < text.length() - 1; ++i){
+            res.add(text.charAt(i+1) - text.charAt(i));
+        }
+
+        return res;
     }
 }
