@@ -1,3 +1,4 @@
+/* (C)2024 */
 import java.util.Collections;
 import java.util.List;
 
@@ -106,19 +107,21 @@ public class Challenges {
      * @param ascivalues  hand, player2 hand
      */
     public String decrypt(List<Integer> ascivalues) {
+        // YOUR CODE HERE...
         return "";
     }
 
-  /**
-   * Encryption Function.
-   * Create am encryption function that takes a string and converts into an array of ASCII character values.
-   * encrypt("Hello") ➞ [72, 29, 7, 0, 3]
-   * // H = 72, the difference between the H and e is 29
-   * The function must return an array of integer ascii values.
-   *
-   * @param text  hand, player2 hand
-   */
-  public List<Integer> encrypt(String text) {
+    /**
+     * Encryption Function.
+     * Create am encryption function that takes a string and converts into an array of ASCII character values.
+     * encrypt("Hello") ➞ [72, 29, 7, 0, 3]
+     * // H = 72, the difference between the H and e is 29
+     * The function must return an array of integer ascii values.
+     *
+     * @param text  hand, player2 hand
+     */
+    public List<Integer> encrypt(String text) {
+        // YOUR CODE HERE...
         return Collections.emptyList();
     }
 }

@@ -1,5 +1,4 @@
 /* (C)2024 */
-import java.util.Collections;
 import java.util.List;
 import mocks.CallCostObject;
 import mocks.CardWinner;
@@ -7,20 +6,21 @@ import mocks.TotalSummary;
 
 public class ChallengeStream {
 
-  /**
-   * One stack containing five numbered cards from 0-9 are given to both players. Calculate which hand has winning number.
-   * The winning number is calculated by which hard produces the highest two-digit number.
-   *
-   * calculateWinningHand([2, 5, 2, 6, 9], [3, 7, 3, 1, 2]) ➞ true
-   *  P1 can make the number 96
-   *  P2 can make the number 73
-   *  P1 win the round since 96 > 73
-   *
-   * The function must return which player hand is the winner and the two-digit number produced. The solution must contain streams.
-   *
-   * @param player1  hand, player2 hand
-   */
-  public CardWinner calculateWinningHand(List<Integer> player1, List<Integer> player2) {
+    /**
+     * One stack containing five numbered cards from 0-9 are given to both players. Calculate which hand has winning number.
+     * The winning number is calculated by which hard produces the highest two-digit number.
+     *
+     * calculateWinningHand([2, 5, 2, 6, 9], [3, 7, 3, 1, 2]) ➞ true
+     *  P1 can make the number 96
+     *  P2 can make the number 73
+     *  P1 win the round since 96 > 73
+     *
+     * The function must return which player hand is the winner and the two-digit number produced. The solution must contain streams.
+     *
+     * @param player1  hand, player2 hand
+     */
+    public CardWinner calculateWinningHand(List<Integer> player1, List<Integer> player2) {
+        // YOUR CODE HERE...
         return new CardWinner();
     }
 
@@ -43,7 +43,7 @@ public class ChallengeStream {
      * @returns {CallsResponse}  - Processed information
      */
     public TotalSummary calculateCost(List<CallCostObject> costObjectList) {
+        // YOUR CODE HERE...
         return new TotalSummary();
     }
 }
-
