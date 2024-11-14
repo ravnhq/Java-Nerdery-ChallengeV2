@@ -39,10 +39,10 @@ public class ChallengeStreamTest {
         assertEquals(96, challengeStream.calculateWinningHand(Arrays.asList(2, 5, 2, 6, 9), Arrays.asList(3, 7, 3, 1, 2)).getWinTotal());
 
         assertEquals("P2", challengeStream.calculateWinningHand(Arrays.asList(1, 2, 3, 4, 5), Arrays.asList(9, 8, 7, 6, 5)).getWinner());
-        assertEquals(35, challengeStream.calculateWinningHand(Arrays.asList(1, 2, 3, 4, 5), Arrays.asList(9, 8, 7, 6, 5)).getWinTotal());
+        assertEquals(98, challengeStream.calculateWinningHand(Arrays.asList(1, 2, 3, 4, 5), Arrays.asList(9, 8, 7, 6, 5)).getWinTotal());
 
-        assertEquals("P1", challengeStream.calculateWinningHand(Arrays.asList(4, 3, 4, 4, 5), Arrays.asList(3, 2, 5, 4, 1)).getWinner());
-        assertEquals(20, challengeStream.calculateWinningHand(Arrays.asList(4, 3, 4, 4, 5), Arrays.asList(3, 2, 5, 4, 1)).getWinTotal());
+        assertEquals("TIE", challengeStream.calculateWinningHand(Arrays.asList(4, 3, 4, 4, 5), Arrays.asList(3, 2, 5, 4, 1)).getWinner());
+        assertEquals(54, challengeStream.calculateWinningHand(Arrays.asList(4, 3, 4, 4, 5), Arrays.asList(3, 2, 5, 4, 1)).getWinTotal());
 
     }
 }
