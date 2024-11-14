@@ -1,5 +1,9 @@
 /* (C)2024 */
+import java.util.Comparator;
 import java.util.List;
+import java.util.Objects;
+import java.util.stream.Stream;
+
 import mocks.CallCostObject;
 import mocks.CardWinner;
 import mocks.TotalSummary;
@@ -20,8 +24,22 @@ public class ChallengeStream {
      * @param player1  hand, player2 hand
      */
     public CardWinner calculateWinningHand(List<Integer> player1, List<Integer> player2) {
-        // YOUR CODE HERE...
-        return new CardWinner();
+        int p1Selection = Integer.parseInt(player1.stream().
+                sorted(Comparator.reverseOrder()).
+                map(Objects::toString).
+                limit(2).
+                reduce("", (s, n) -> s+n));
+
+        int p2Selection = Integer.parseInt(player2.stream().
+                sorted(Comparator.reverseOrder()).
+                map(Objects::toString).
+                limit(2).
+                reduce("", (s, n) -> s+n));
+
+        // I will define as tiebreaker that player 1 will be declared winner;
+        if (p1Selection >= p2Selection) { return new CardWinner("P1", p1Selection); }
+
+        return new CardWinner("P2", p2Selection);
     }
 
     /**
