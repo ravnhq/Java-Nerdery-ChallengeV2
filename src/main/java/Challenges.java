@@ -1,8 +1,6 @@
 /* (C)2024 */
-import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 /* (C)2024 */
@@ -94,7 +92,7 @@ public class Challenges {
 
     public String ownPower(int number, int lastDigits) {
         BigInteger cont = BigInteger.valueOf(0);
-        BigInteger aux = BigInteger.valueOf(0);
+        BigInteger aux;
         for(int i = 1; i <= number; ++i){
             aux = BigInteger.valueOf(i);
             aux = aux.pow(aux.intValue());
@@ -161,7 +159,7 @@ public class Challenges {
 
         for(int i = 0; i < ascivalues.size() - 1; ++i){
             message.append((char)(c + ascivalues.get(i + 1)));
-            c = (char) message.charAt(message.length() - 1);
+            c = message.charAt(message.length() - 1);
         }
         return message.toString();
     }

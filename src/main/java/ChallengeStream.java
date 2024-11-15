@@ -2,9 +2,9 @@
 import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
-import java.util.stream.Stream;
 
 import mocks.CallCostObject;
+import mocks.CallSummary;
 import mocks.CardWinner;
 import mocks.TotalSummary;
 
@@ -36,9 +36,8 @@ public class ChallengeStream {
                 limit(2).
                 reduce("", (s, n) -> s+n));
 
-        // I will define as tiebreaker that player 1 will be declared winner;
-        if (p1Selection >= p2Selection) { return new CardWinner("P1", p1Selection); }
-
+        if (p1Selection == p2Selection) { return new CardWinner("TIE", p1Selection); }
+        if (p1Selection > p2Selection) { return new CardWinner("P1", p1Selection); }
         return new CardWinner("P2", p2Selection);
     }
 
@@ -61,7 +60,16 @@ public class ChallengeStream {
      * @returns {CallsResponse}  - Processed information
      */
     public TotalSummary calculateCost(List<CallCostObject> costObjectList) {
-        // YOUR CODE HERE...
-        return new TotalSummary();
+        List<CallSummary> calls = costObjectList.stream().
+                map(c -> switch (c.getType()){
+                    case "International" -> new CallSummary(c, c.getDuration() > 3 ? 22.68 + (c.getDuration() - 3) * 3.03 : 7.56 * c.getDuration());
+                    case "National" -> new CallSummary(c, c.getDuration() > 3 ? 3.60 + (c.getDuration() - 3) * 0.48 : 1.20 * c.getDuration());
+                    case "Local" -> new CallSummary(c, 0.20 * c.getDuration());
+                    default -> new CallSummary(c, 0.00);
+                }).
+                filter(c -> c.getTotalCost() > 0).
+                toList();
+        double total = calls.stream().map(CallSummary::getTotalCost).reduce(0.0, Double::sum);
+        return new TotalSummary(calls, calls.size(), total);
     }
 }
