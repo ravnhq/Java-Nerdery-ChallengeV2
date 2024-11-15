@@ -1,5 +1,6 @@
 /* (C)2024 */
-import java.util.Collections;
+import java.math.BigInteger;
+import java.util.ArrayList;
 import java.util.List;
 
 /* (C)2024 */
@@ -20,8 +21,18 @@ public class Challenges {
     ***** */
 
     public String readableTime(Integer seconds) {
-        // YOUR CODE HERE...
-        return "";
+        String h = Integer.toString(seconds / 3600);
+        String m = Integer.toString((seconds % 3600) / 60);
+        String s = Integer.toString(seconds % 60);
+
+        String[] a = {h, m, s};
+        for(int i = 0; i < 3; ++i){
+            if (a[i].length() == 1){
+                a[i] = "0" + a[i];
+            }
+        }
+
+        return String.join(":", a[0], a[1], a[2]);
     }
     ;
 
@@ -44,8 +55,18 @@ public class Challenges {
 
     public String[] circularArray(int index) {
         String[] COUNTRY_NAMES = {"Germany", "Norway", "Island", "Japan", "Israel"};
-        // YOUR CODE HERE...
-        return COUNTRY_NAMES;
+        ArrayList<String> res = new ArrayList<>();
+
+        int firstE = index;
+        if(index >= 5) firstE = index % 5;
+
+        for (int i = firstE; i < COUNTRY_NAMES.length; ++i){
+            res.add(COUNTRY_NAMES[i]);
+        }
+        for (int i = 0; i < firstE; ++i){
+            res.add(COUNTRY_NAMES[i]);
+        }
+        return res.toArray(new String[0]);
     }
     ;
 
@@ -70,8 +91,16 @@ public class Challenges {
     ***** */
 
     public String ownPower(int number, int lastDigits) {
-        // YOUR CODE HERE...
-        return "";
+        BigInteger cont = BigInteger.valueOf(0);
+        BigInteger aux;
+        for(int i = 1; i <= number; ++i){
+            aux = BigInteger.valueOf(i);
+            aux = aux.pow(aux.intValue());
+            cont = cont.add(aux);
+        }
+
+        int l = (int) (Math.log10(cont.doubleValue()) + 1); //Obtaining length of the number
+        return cont.toString().substring(l - lastDigits);
     }
     ;
 
@@ -93,8 +122,25 @@ public class Challenges {
     ***** */
 
     public Integer digitSum(int n) {
-        // YOUR CODE HERE...
-        return 1;
+        BigInteger[] facts = new BigInteger[n+1];
+        facts[0] = BigInteger.valueOf(1);
+
+        //Calculating facts
+        for(int i = 1; i < n+1; ++i){
+            facts[i] = facts[i - 1].multiply(BigInteger.valueOf(i));
+        }
+
+        var res = facts[n];
+        int l = (int) (Math.log10(res.doubleValue()) + 1);
+        int sum = 0;
+
+        //Summing digits
+        for(int i = 0; i < l; ++i){
+            sum += res.mod(BigInteger.valueOf(10)).intValue();
+            res = res.divide(BigInteger.valueOf(10));
+        }
+
+        return sum;
     }
 
     /**
@@ -107,8 +153,15 @@ public class Challenges {
      * @param ascivalues  hand, player2 hand
      */
     public String decrypt(List<Integer> ascivalues) {
-        // YOUR CODE HERE...
-        return "";
+        StringBuilder message = new StringBuilder();
+        message.append((char) ascivalues.getFirst().intValue());
+        char c = message.charAt(0);
+
+        for(int i = 0; i < ascivalues.size() - 1; ++i){
+            message.append((char)(c + ascivalues.get(i + 1)));
+            c = message.charAt(message.length() - 1);
+        }
+        return message.toString();
     }
 
     /**
@@ -121,7 +174,13 @@ public class Challenges {
      * @param text  hand, player2 hand
      */
     public List<Integer> encrypt(String text) {
-        // YOUR CODE HERE...
-        return Collections.emptyList();
+        List<Integer> res = new ArrayList<>();
+
+        res.add((int) text.charAt(0));
+        for(int i = 0; i < text.length() - 1; ++i){
+            res.add(text.charAt(i+1) - text.charAt(i));
+        }
+
+        return res;
     }
 }
